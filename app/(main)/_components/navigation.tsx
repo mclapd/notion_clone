@@ -25,8 +25,12 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import TrashBox from "./trash-box";
+import { useSettings } from "@/hooks/use-settings";
+import { useSearch } from "@/hooks/use-search";
 
 const Navigation = () => {
+  const settings = useSettings();
+  const search = useSearch();
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
   const create = useMutation(api.documents.create);
@@ -119,9 +123,7 @@ const Navigation = () => {
   };
 
   const handleCreate = () => {
-    const promise = create({ title: "Untitled" }).then((documentId) =>
-      router.push(`/documents/${documentId}`)
-    );
+    const promise = create({ title: "untitled" });
 
     toast.promise(promise, {
       loading: "Creating a new note...",
@@ -152,8 +154,8 @@ const Navigation = () => {
         </div>
         <div>
           <UserItem />
-          {/* <Item label="Search" icon={Search} isSearch onClick={search.onOpen} />
-          <Item label="Settings" icon={Settings} onClick={settings.onOpen} /> */}
+          <Item label="Search" icon={Search} isSearch onClick={search.onOpen} />
+          <Item label="Settings" icon={Settings} onClick={settings.onOpen} />
           <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
         </div>
         <div className="mt-4">

@@ -8,7 +8,7 @@ import { PlusCircle } from "lucide-react";
 import Image from "next/image";
 import { toast } from "sonner";
 
-const DocumentPage = () => {
+const DocumentsPage = () => {
   const { user } = useUser();
   const create = useMutation(api.documents.create);
 
@@ -49,4 +49,4 @@ const DocumentPage = () => {
   );
 };
 
-export default DocumentPage;
+export default DocumentsPage;
