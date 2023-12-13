@@ -37,7 +37,7 @@ const TrashBox = () => {
 
     toast.promise(promise, {
       loading: "Restoring note...",
-      success: "Note restored!",
+      success: "Note restored",
       error: " Failed to restore note.",
     });
   };
