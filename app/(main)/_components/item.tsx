@@ -78,15 +78,15 @@ const Item = ({
     event.stopPropagation();
 
     if (!id) return;
-
     const promise = create({ title: "Untitled", parentDocument: id }).then(
       (documentId) => {
         if (!expanded) {
           onExpand?.();
         }
-        // router.push(`/documents/${documentId}`);
+        router.push(`/documents/${documentId}`);
       }
     );
+
     toast.promise(promise, {
       loading: "Creating a new note...",
       success: "New note created",
@@ -118,7 +118,7 @@ const Item = ({
       {documentIcon ? (
         <div className="shrink-0 mr-2 text-[18px]">{documentIcon}</div>
       ) : (
-        <Icon className="shrink-0 h-[18px] mr-2 text-muted-foreground" />
+        <Icon className="shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground" />
       )}
       <span className="truncate">{label}</span>
       {isSearch && (
@@ -171,7 +171,9 @@ export default Item;
 Item.Skeleton = function ItemSkeleton({ level }: { level?: number }) {
   return (
     <div
-      style={{ paddingLeft: level ? `${level * 12 + 25}px` : "12px" }}
+      style={{
+        paddingLeft: level ? `${level * 12 + 25}px` : "12px",
+      }}
       className="flex gap-x-2 py-[3px]"
     >
       <Skeleton className=" h-4 w-4" />
